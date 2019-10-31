@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // let promise = new Promise(function(resolve, reject) {
+    //     console.log('Promise');
+    //     resolve();
+    // });
+    //
+    //    promise.then(function() {
+    //         console.log('resolved.');
+    //     });
+    //
+    // console.log('Hi!');
+    const p1 = new Promise(function (resolve, reject) {
+        setTimeout(() => reject('fail'), 3000)
+    })
+
+    const p2 = new Promise(function (resolve, reject) {
+        p1.then(()=>{
+            console.log('1')
+        }).catch(()=>{
+            console.log('2')
+        })
+        setTimeout(() => resolve(p1), 1000)
+    })
+
+    p2.then(result => console.log(result+'suc')).catch(error => console.log(error+'fail'))
+</script>
+</body>
+</html>

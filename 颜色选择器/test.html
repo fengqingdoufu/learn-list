@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="c1" width="600" height="600">1</canvas>
+
+<script>
+    function toCanvas(id, progress) {
+        //canvas进度条
+        let canvas = document.getElementById(id),
+            ctx = canvas.getContext("2d"),
+            percent = progress,  //最终百分比
+            circleX = canvas.width / 2,  //中心x坐标
+            circleY = canvas.height / 2,  //中心y坐标
+            radius = 100, //圆环半径
+            lineWidth = 45,  //圆形线条的宽度
+            fontSize = 20; //字体大小
+        function sector(cx, cy, r, startAngle, endAngle, anti) {
+            ctx.beginPath();
+            //ctx.moveTo(cx, cy + r); // 从圆形底部开始画
+            ctx.lineWidth = lineWidth;
+            // 渐变色 - 可自定义
+            // var linGrad = ctx.createLinearGradient(
+            //     circleX-radius-lineWidth, circleY, circleX+radius+lineWidth, circleY
+            // // );
+            // var linGrad = ctx.createLinearGradient(
+            //     0, 0, circleX+radius+lineWidth, circleY
+            // );
+            // linGrad.addColorStop(0.0, '#f3f11d');
+            // linGrad.addColorStop(0.166, '#F30D2D');
+            // linGrad.addColorStop(0.333, '#f339b2');
+            // linGrad.addColorStop(0.50, '#5a1cf3');
+            // linGrad.addColorStop(0.666, '#122df3');
+            // linGrad.addColorStop(0.833, '#80f3a2');
+            // //linGrad.addColorStop(0.5, '#9bc4eb');
+            // linGrad.addColorStop(1.0, '#76f83b');
+            let gradientBar = ctx.createLinearGradient(0, 0, 0, 256);
+            gradientBar.addColorStop(0, '#f00');
+            gradientBar.addColorStop(1 / 6, '#f0f');
+            gradientBar.addColorStop(2 / 6, '#00f');
+            gradientBar.addColorStop(3 / 6, '#0ff');
+            gradientBar.addColorStop(4 / 6, '#0f0');
+            gradientBar.addColorStop(5 / 6, '#ff0');
+            gradientBar.addColorStop(1, '#f00');
+            ctx.strokeStyle = gradientBar;
+            // 圆弧两端的样式
+            ctx.lineCap = 'round';
+            ctx.fillRect(0, 0, 20, 256);
+            //圆弧
+            // ctx.arc(
+            //     cx, cy, r,
+            //     (Math.PI * 2 / 3),
+            //     (Math.PI * 2 / 3) + endAngle / 100 * (Math.PI * 5 / 3),
+            //     false
+            // );
+            ctx.stroke();
+        }
+
+        // circle(circleX, circleY, radius);
+        sector(circleX, circleY, radius, Math.PI * 2 / 3, 100);
+    }
+
+    toCanvas('c1', 50);
+</script>
+</body>
+</html>

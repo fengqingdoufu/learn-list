@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 1090px;
+            border: 1px solid red;
+        }
+        ul:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        ul li {
+            float: left;
+            width: 250px;
+            height: 100px;
+            margin-right: 30px;
+            background: #000000;
+        }
+        ul :nth-child(4n) {
+            margin-right: 0;
+            margin-bottom: 30px;
+        }
+        ul :nth-last-child(1) {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    var arr1 = [
+        {
+            id:1
+        },
+        {
+            id:2
+        }
+    ]
+    var arr2 = [
+        {
+            name: '111',
+            id: 1
+        },
+        {
+            name: '111',
+            id: 1
+        },
+        {
+            name: '111',
+            id: 2
+        }
+    ]
+    var arr1Lenth = arr1.length
+    var arr2Lenth = arr2.length
+    for(var i = 0; i < arr1Lenth; i++){
+        var id = arr1[i].id
+        var arr3 = []
+        for(var j = 0; j < arr2Lenth; j++){
+            if(id === arr2[j].id) {
+                arr3.push(arr2[j])
+                arr1[i].arr = arr3
+            }
+        }
+    }
+    console.log(arr1)
+</script>
+</body>
+</html>

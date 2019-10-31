@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>超出部分滚动条</title>
+</head>
+<style>
+    #box {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+    }
+    #box > div {
+        width: 517px;
+        height: 300px;
+        overflow-y: scroll;
+    }
+    .input {
+        color: #444;
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        min-width: 50px;
+        max-width: 300px;
+        background: #fff;
+        user-select: text;
+        -webkit-user-select: text;
+
+    }
+    .input:focus {
+        border: none;
+    }
+    #div1 {
+        background: red;
+    }
+    #div3 {
+        width: 100px;
+        float: left;
+        clear: both;
+    }
+
+</style>
+<body>
+<div id="div1">
+    <div id="div2">33</div>
+    <div id="div3">444</div>
+</div>
+<div class="input"
+     contenteditable="true"></div>
+<!-- 兼容所有浏览器的超出部分滚动不显示滚动条 -->
+<div id="box">
+    <div>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+        你好 </br>你好 </br>
+    </div>
+</div>
+<script>
+    // let colorArr1 = ['#111', '222']
+    // let colorArr2 = {
+    //     name: 111,
+    //     age: 222
+    // }
+    // for (let i of colorArr1) {
+    //     console.log(i)
+    // }
+    // for (let item of colorArr2) {
+    //     console.log(item)
+    // }
+    // var data = {
+    //     "ret": 0,
+    //     "msg": "获取列表成功",
+    //     "forward": "",
+    //     "data": {
+    //         "list": [
+    //             {
+    //                 "RowId": 1,
+    //                 "Id": 1,
+    //                 "Name": "南安农家乐",
+    //                 "Themeids": "自助烧烤|农家菜馆",
+    //                 "Limit": 6,
+    //                 "CategoryId": 1,
+    //                 "BaseIds": "Wifi|厕所",
+    //                 "TicketState": 1,
+    //                 "FoodState": 1,
+    //                 "HotelState": 1,
+    //                 "Redcard": 1,
+    //                 "Position": "泉州市丰泽区华创园3楼",
+    //                 "LocationLng": 118.673305,
+    //                 "LocationLat": 24.886283,
+    //                 "Certified": 1,
+    //                 "LinkName": "张三",
+    //                 "Mobile": "15159509686",
+    //                 "Score": 3.6,
+    //                 "CommentCount": 20,
+    //                 "HotelStatus": 1,
+    //                 "FoodStatus": 1,
+    //                 "TicketStatus": 1,
+    //                 "Content": null,
+    //                 "License": "http://shopmakeup-static.zonejoin.cn/2019/1/24/95339941176249094.jpg",
+    //                 "State": 1,
+    //                 "TopState": 1,
+    //                 "Sort": 1,
+    //                 "OrderTotal": 1,
+    //                 "PriceTotal": 1,
+    //                 "TakeCash": 1000,
+    //                 "NoTakeCash": 500,
+    //                 "CoverImg": "http://shopmakeup-static.zonejoin.cn/2019/1/24/95339941176249094.jpg",
+    //                 "MinPrice": 20,
+    //                 "Notic": "商家公告商家公告商家公告商家公告商家公告",
+    //                 "CollectionTotal": 100,
+    //                 "Province": null,
+    //                 "City": null,
+    //                 "Area": null,
+    //                 "Addr": null,
+    //                 "Remark": null,
+    //                 "Created": null,
+    //                 "GoodFaith": 1,
+    //                 "Distance": 1605.2720063502234,
+    //                 "CategoryName": "农家乐"
+    //             },
+    //             {
+    //                 "RowId": 1,
+    //                 "Id": 2,
+    //                 "Name": "南安农家乐111",
+    //                 "Themeids": "自助烧烤|农家菜馆",
+    //                 "Limit": 6,
+    //                 "CategoryId": 1,
+    //                 "BaseIds": "Wifi|厕所",
+    //                 "TicketState": 1,
+    //                 "FoodState": 1,
+    //                 "HotelState": 1,
+    //                 "Redcard": 1,
+    //                 "Position": "泉州市丰泽区华创园3楼",
+    //                 "LocationLng": 118.673305,
+    //                 "LocationLat": 24.886283,
+    //                 "Certified": 1,
+    //                 "LinkName": "张三",
+    //                 "Mobile": "15159509686",
+    //                 "Score": 3.6,
+    //                 "CommentCount": 20,
+    //                 "HotelStatus": 1,
+    //                 "FoodStatus": 1,
+    //                 "TicketStatus": 1,
+    //                 "Content": null,
+    //                 "License": "http://shopmakeup-static.zonejoin.cn/2019/1/24/95339941176249094.jpg",
+    //                 "State": 1,
+    //                 "TopState": 1,
+    //                 "Sort": 1,
+    //                 "OrderTotal": 1,
+    //                 "PriceTotal": 1,
+    //                 "TakeCash": 1000,
+    //                 "NoTakeCash": 500,
+    //                 "CoverImg": "http://shopmakeup-static.zonejoin.cn/2019/1/24/95339941176249094.jpg",
+    //                 "MinPrice": 20,
+    //                 "Notic": "商家公告商家公告商家公告商家公告商家公告",
+    //                 "CollectionTotal": 100,
+    //                 "Province": null,
+    //                 "City": null,
+    //                 "Area": null,
+    //                 "Addr": null,
+    //                 "Remark": null,
+    //                 "Created": null,
+    //                 "GoodFaith": 1,
+    //                 "Distance": 1605.2720063502234,
+    //                 "CategoryName": "农家乐"
+    //             }
+    //         ],
+    //         "total_count": 2,
+    //         "total_page": 2,
+    //         "CouponList": [
+    //             {
+    //                 "Name": "无敌优惠劵",
+    //                 "CounponType": 0,
+    //                 "Notice": "无门槛优惠",
+    //                 "DateType": 1,
+    //                 "BeginTime": "2018-10-02T00:00:00",
+    //                 "EndTime": "2019-12-12T23:59:59",
+    //                 "FixedBeginTerm": 0,
+    //                 "FixedTermDay": 10,
+    //                 "Quantity": 100,
+    //                 "UseLimit": 10,
+    //                 "LeastCost": 5,
+    //                 "ReduceCost": 1,
+    //                 "Discount": 0.09,
+    //                 "UserId": 1,
+    //                 "Created": null,
+    //                 "BusinessId": 1,
+    //                 "Id": 5,
+    //                 "data": []
+    //             },
+    //             {
+    //                 "Name": "55552",
+    //                 "CounponType": 0,
+    //                 "Notice": "错过了就没有了",
+    //                 "DateType": 0,
+    //                 "BeginTime": "2018-10-10T00:00:00",
+    //                 "EndTime": "2019-12-12T23:59:59",
+    //                 "FixedBeginTerm": 0,
+    //                 "FixedTermDay": 2,
+    //                 "Quantity": 888,
+    //                 "UseLimit": 888,
+    //                 "LeastCost": 1,
+    //                 "ReduceCost": 1,
+    //                 "Discount": 0.5,
+    //                 "UserId": 1,
+    //                 "Created": null,
+    //                 "BusinessId": 1,
+    //                 "Id": 7,
+    //                 "data": []
+    //             },
+    //             {
+    //                 "Name": "不一样的优惠劵",
+    //                 "CounponType": 1,
+    //                 "Notice": "超级优惠劵就只有今天",
+    //                 "DateType": 1,
+    //                 "BeginTime": "2018-10-11T00:00:00",
+    //                 "EndTime": "2019-12-12T23:59:59",
+    //                 "FixedBeginTerm": 1,
+    //                 "FixedTermDay": 1,
+    //                 "Quantity": 1,
+    //                 "UseLimit": 11,
+    //                 "LeastCost": 1,
+    //                 "ReduceCost": 0.1,
+    //                 "Discount": 0,
+    //                 "UserId": 1,
+    //                 "Created": null,
+    //                 "BusinessId": 1,
+    //                 "Id": 6,
+    //                 "data": []
+    //             }
+    //         ]
+    //     }
+    // }
+    // let list = data.data.list
+    // let CouponList = data.data.CouponList
+    // let colorArr = ['#111', '222']
+    // let newArr = list.map(item => {
+    //     let Themeids = item.Themeids.split('|')
+    //     let list = Themeids.map((item, index) => {
+    //         return {
+    //             name: item,
+    //             color: colorArr[index % 2]
+    //         }
+    //     })
+    //     let CouponList1 = CouponList.filter(c => {
+    //         return c.BusinessId === item.Id
+    //     })
+    //     return {
+    //         // ...item,
+    //         list,
+    //         CouponList1
+    //     }
+    // })
+    // console.log(newArr)
+    setTimeout(() => {
+        console.log(1)
+    }, 0)
+    new Promise(function ex(resolve) {
+        console.log(2);
+        for (let i = 0; i < 1000; i++) {
+            i === 999 && resolve()
+        }
+        console.log(3)
+    }).then(() => {
+        console.log(4)
+    })
+    console.log(5)
+
+    let listData = Array(2).fill().map((item, index) => ({
+        index
+    }))
+    console.log(listData)
+</script>
+</body>
+</html>

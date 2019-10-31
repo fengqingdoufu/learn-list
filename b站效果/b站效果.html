@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 80px;
+            height: 80px;
+            background: url("anim-coin.png") no-repeat;
+            background-position: 0 0 ;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var div1 = document.getElementById('div1')
+    var position = 0
+    var timer = null
+    div1.onmouseover = function () {
+       timer = setInterval(function () {
+           position += 80
+           if (position >= 640) position = 0
+           div1.style.backgroundPosition = `-${position}px 0`
+       },150)
+    }
+    div1.onmouseout = function () {
+        clearInterval(timer)
+        position = 0
+        div1.style.backgroundPosition = `-${position}px 0`
+    }
+</script>
+</body>
+</html>

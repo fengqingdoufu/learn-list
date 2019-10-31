@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // const s = new Set();
+    // [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+    // console.log(s)
+    // for (let item of s) {
+    //     console.log(item);
+    // }
+    //数组
+    var arr = [1,2,3]
+    var arr1 = arr.concat([])
+    var arr2 = arr.slice()
+    var arr3 = arr
+    var arr4 = arr.filter((item) => {
+        return item
+    })
+    var arr5 = arr.map(function (item) {
+        return item
+    })
+    arr1[0] = 5
+    arr2[0] = 6
+    arr3[0] = 7
+    arr4[0] = 8
+    arr5[0] = 9
+    console.log(arr)
+    console.log(arr1)
+    console.log(arr2)
+    console.log(arr3)
+    console.log(arr4)
+    console.log(arr5)
+    // 对象
+    var obj = {'a': 1}
+    var obj1 = Object.assign({},obj)
+    var obj2 =  JSON.parse(JSON.stringify(obj))
+    obj1.a = 2
+    obj2.a = 3
+    console.log(obj)
+    console.log(obj1)
+    console.log(obj2)
+    // for in  for of forEach
+    var arrNew = [1,2,3]
+    var objNew = {
+        a: 1
+    }
+    for ( let value of arrNew) {
+        console.log(value)
+    }
+    for (let index in arrNew){
+        console.log(index)
+    }
+    // for ( let value of objNew) {
+    //     console.log(value)
+    // }
+    for (let index in objNew){
+        console.log(index)
+    }
+    var nArr = [1]
+    var oArr = [1,2,3]
+    var aArr = [...nArr,...oArr]
+    console.log(aArr)
+</script>
+</body>
+</html>

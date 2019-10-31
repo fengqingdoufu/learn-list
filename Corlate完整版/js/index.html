@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html {
+            width: 100%;
+            height: 100%;
+        }
+        .wrap {
+            width: 100%;
+            height: 60%;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+</div>
+<script src="jquery.js"></script>
+<script>
+    var fileName = '111'
+    $('body').append("<a id='download' href="+ fileName + ">文件下载</a>")
+    $('#download')[0].remove()
+
+    var a = 1;
+    var b = [];
+    console.log(a || b);
+</script>
+</body>
+</html>

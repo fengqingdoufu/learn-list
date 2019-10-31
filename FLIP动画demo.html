@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Lato:300,400,700";
+        .app {
+            height: 90vmin;
+            width: 50vmin;
+            font-family: Lato, sans-serif;
+            background: white;
+            overflow: hidden;
+        }
+
+        .scene {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            overflow-y: scroll;
+        }
+        .scene.-gallery {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+        .scene.-gallery > .item {
+            flex-basis: 30%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            height: auto;
+            min-height: 16.6666666667vmin;
+        }
+
+        .item {
+            transform-origin: top left;
+        }
+        .item > img {
+            height: auto;
+            width: 100%;
+        }
+
+        .detail {
+            color: white;
+            width: 50vmin;
+            height: 90vmin;
+            transform-origin: top left;
+            display: flex;
+            flex-direction: column;
+        }
+        .detail > img {
+            height: auto;
+            width: 100%;
+            flex: 0 1 auto;
+            z-index: 1;
+        }
+        .detail > .content {
+            background: #232323;
+            flex: 1 0 auto;
+            padding: 2rem 1.5rem;
+            animation: slide-down 0.6s ease-in-out;
+        }
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        .detail > .content > * {
+            margin-bottom: 1rem;
+        }
+        .detail > .content > .title {
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        .detail > .content > .creator {
+            opacity: 0.6;
+            margin-top: -0.5rem;
+        }
+        .detail > .content > .description {
+            line-height: 1.5;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #1D1F20;
+        }
+
+        html, body {
+            font-size: 14px;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <div class="scene -gallery">
+        <div class="item" data-key="owl">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-owl.png" alt="" />
+        </div>
+        <div class="item" data-key="deer">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-deer.png" alt="" />
+        </div>
+        <div class="item" data-key="hipster">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-hipster.png" alt="" />
+        </div>
+        <div class="item" data-key="ram">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-ram.png" alt="" />
+        </div>
+        <div class="item" data-key="dog">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-dog.png" alt="" />
+        </div>
+        <div class="item" data-key="ram-side">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-sideram.png" alt="" />
+        </div>
+        <div class="item" data-key="ram-horns">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-multiram.png" alt="" />
+        </div>
+        <div class="item" data-key="gorilla">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-gorilla.png" alt="" />
+        </div>
+        <div class="item" data-key="bird">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-bird.png" alt="" />
+        </div>
+        <div class="item" data-key="owl2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-owl.png" alt="" />
+        </div>
+        <div class="item" data-key="deer2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-deer.png" alt="" />
+        </div>
+        <div class="item" data-key="hipster2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-hipster.png" alt="" />
+        </div>
+        <div class="item" data-key="ram2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-ram.png" alt="" />
+        </div>
+        <div class="item" data-key="dog2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-dog.png" alt="" />
+        </div>
+        <div class="item" data-key="ram-side2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-sideram.png" alt="" />
+        </div>
+        <div class="item" data-key="ram-horns2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-multiram.png" alt="" />
+        </div>
+        <div class="item" data-key="gorilla2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-gorilla.png" alt="" />
+        </div>
+        <div class="item" data-key="bird2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-bird.png" alt="" />
+        </div>
+    </div>
+    <div class="scene -detail">
+        <div class="detail">
+            <img />
+            <div class="content">
+                <div class="title">Great Horned Owl</div>
+                <div class="creator">Krystine Lopez</div>
+                <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure cum, est amet delectus, blanditiis voluptatem laborum pariatur consequatur quae voluptate, nisi. Laborum adipisci iste earum distinctio, fugit, quas ipsa impedit.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var items = document.querySelectorAll('.item'); // 所有图片
+    var detailItem = document.querySelector('.detail'); // 获取详情第二层包裹层
+    var detailScene = document.querySelector('.scene.-detail');// 获取详情第一层包裹层
+    // 获取详情内容包裹层置为不可见
+    detailScene.style.display = 'none';
+
+    items.forEach(function (item) {
+        item.addEventListener('click', function () {
+            var itemImage = item.querySelector('img');
+
+            detailItem.setAttribute('data-image', item.getAttribute('data-key'));
+
+            detailItem.querySelector('img').setAttribute('src', itemImage.getAttribute('src'));
+
+            detailScene.style.display = 'block';
+            item.style.opacity = 0;
+
+            var firstRect = itemImage.getBoundingClientRect(); // 获取当前图片的信息
+            var lastRect = detailItem.getBoundingClientRect(); // 获取当前第二层包裹层的信息
+
+            console.log('firstRect', firstRect);
+            console.log('lastRect', lastRect);
+            console.log('translateX', firstRect.left - lastRect.left);
+            console.log('translateY', firstRect.top - lastRect.top);
+            console.log('scale', firstRect.width / lastRect.width);
+
+            detailItem.animate([
+                    {
+                        transform: 'translateX(' + (
+                            firstRect.left - lastRect.left) + 'px)translateY(' + (
+                            firstRect.top - lastRect.top) + 'px)scale(' +
+                            firstRect.width / lastRect.width + ')'
+                    },
+                    {
+                        transform: 'translateX(0)translateY(0)scale(1)'
+                    }],
+                    {
+                    duration: 600,
+                    easing: 'cubic-bezier(0.2, 0, 0.2, 1)'
+                    });
+
+        });
+    });
+
+    detailItem.addEventListener('click', function () {
+        var itemImage = document.querySelector('[data-key="' + detailItem.getAttribute('data-image') + '"]');
+
+        var itemImageRect = itemImage.getBoundingClientRect();
+        var detailItemRect = detailItem.getBoundingClientRect();
+
+        detailScene.style.display = 'none';
+        itemImage.style.opacity = 1;
+
+        itemImage.animate([
+                {
+                    zIndex: 2,
+                    transform: '\n          translateX(' + (
+                        detailItemRect.left - itemImageRect.left) + 'px)\n          translateY(' + (
+                        detailItemRect.top - itemImageRect.top) + 'px)\n  scale(' +
+                        detailItemRect.width / itemImageRect.width + ')\n        ' },
+
+
+                {
+                    zIndex: 2,
+                    transform: '\n          translateX(0)\n          translateY(0)\n          scale(1)\n         ' }],
+
+
+
+
+
+            {
+                duration: 600,
+                easing: 'cubic-bezier(0.2, 0, 0.2, 1)' });
+
+    });
+</script>
+</body>
+</html>

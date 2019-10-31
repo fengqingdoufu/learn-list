@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   // 实现call函数
+   Function.prototype.call2= function (context) {
+     if (typeof this !== 'function') {
+       throw TypeError('not function')
+     }
+     context = context || window;
+     context.fn = this;
+     let arg = [...arguments].slice(1);
+     let result = context.fn(...arg);
+     delete  context.fn;
+     return result;
+   };
+
+   // 实现apply
+    Function.prototype.apply2 = function (content, arg) {
+      if (typeof this !== 'function') {
+        throw TypeError('not function')
+      }
+      context = context || window;
+      context.fn = this;
+      let result;
+      if (Object.prototype.toString().call(arguments[1]).slice(8, -1) === 'Array') {
+        result = context.fn(...arguments[1])
+      } else {
+        result = context.fn()
+      }
+      delete context.fn;
+      return result
+    };
+
+    // 实现bind
+   Function.prototype.mybind = function (context) {
+     if (typeof this !== 'function') {
+       throw new TypeError('Error')
+     }
+     let _this = this
+     console.log('绑定的this', this);
+     let arg = [...arguments].slice(1)
+     return function F() {
+       // 处理函数使用new的情况
+       console.log('返回执行的this', this)
+       if (this instanceof F) {
+         console.log(1);
+         return new _this(...arg, ...arguments)
+       } else {
+         console.log(2);
+         return _this.apply(context, arg.concat(...arguments))
+       }
+     }
+   }
+
+   // instanceOf的实现
+   function instanceOf(left, right) {
+     // 子类的__proto__是不是与父类的prototype相等
+     let leftValue = left.__proto__
+     let rightValue = right.prototype
+     while (true) {
+       if (leftValue === null) {
+         return false
+       }
+       if (leftValue === rightValue) {
+         return true
+       }
+       leftValue = leftValue.__proto__
+     }
+   }
+   // 寄生组合继承的核心
+   function create(Super, Sub) {
+     function F() {}
+     F.prototype = Super.prototype
+     let p = new F()
+     p.constructor = Sub;
+     return p
+     // Sub.prototype = p
+   }
+   // new的本质
+   function myNew (fun) {
+     return function () {
+       // 创建一个新对象且将其隐式原型指向构造函数原型
+       let obj = {
+         __proto__ : fun.prototype
+       }
+       // 执行构造函数
+       fun.call(obj, ...arguments)
+       // 返回该对象
+       return obj
+     }
+   }
+
+   function person(name, age) {
+     this.name = name
+     this.age = age
+   }
+   let obj = myNew(person)('chen', 18) // {name: "chen", age: 18}
+
+   // promise实现
+   class Promise1 {
+     constructor (fn) {
+       // 三个状态
+       this.state = 'pending'
+       this.value = undefined
+       this.reason = undefined
+       let resolve = value => {
+         if (this.state === 'pending') {
+           this.state = 'fulfilled'
+           this.value = value
+         }
+       }
+       let reject = value => {
+         if (this.state === 'pending') {
+           this.state = 'rejected'
+           this.reason = value
+         }
+       }
+       // 自动执行函数
+       try {
+         fn(resolve, reject)
+       } catch (e) {
+         reject(e)
+       }
+     }
+     // then
+     then(onFulfilled, onRejected) {
+       switch (this.state) {
+         case 'fulfilled':
+           onFulfilled()
+           break
+         case 'rejected':
+           onRejected()
+           break
+         default:
+       }
+     }
+   }
+   new Promise1(() => {
+     setTimeout(() => {}, 1000)
+   }).then(() => {})
+</script>
+</body>
+</html>

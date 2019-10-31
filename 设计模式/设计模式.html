@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="设计模式.js"></script>-->
+</head>
+<body>
+<script>
+    function SuperClass(name) {
+        this.name = name;
+        this.arr = ['ha','arr'];
+        this.book = ['html', 'css', 'js'];
+    }
+    SuperClass.prototype.getName = function () {
+        console.log(this.name);
+        // this.arr.push('ceshi');
+    }
+    function SubClass(name, time) {
+        SuperClass.call(this, name);
+        this.time = time;
+        this.arr = ['he'];
+    }
+    SubClass.prototype = new SuperClass();
+    SubClass.prototype.getTiem = function () {
+        console.log(this.time)
+    }
+    let instance = new SubClass('j', 12);
+    let instance2 = new SubClass('j', 12);
+    // instance.getName();
+    // instance.arr.push('kk');
+    // console.log(instance0.arr)
+    console.log(instance.arr)
+    console.log(instance2.arr)
+    console.log(instance.book)
+    console.log(instance2.book)
+    console.log('无敌分割线')
+
+    let arr = [{
+        name: 11,
+        age: 0
+    },{
+        name: 22
+    },{
+        name: 33
+    }]
+    let arrColor = ['红色','黄色','蓝色']
+    for (let i = 0; i < arr.length; i++) {
+        arr[i].color = arrColor[i % 2]
+    }
+    // console.log(/age|name/.test(JSON.stringify(arr)));
+    const reg = new RegExp(/http/i);
+    console.log(reg.test('http://'));
+</script>
+</body>
+</html>

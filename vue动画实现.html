@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap {
+            width: 500px;
+            height: 200px;
+            /*border: 1px solid red;*/
+            margin: 50px auto;
+        }
+        .wrap-list div{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            margin-right: 16px;
+        }
+        .wrap-btn {
+            margin-bottom: 20px;
+        }
+        .animate-on-transforms{
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="wrap-btn">
+        <button id="add">add</button>
+        <button id="remove">remove</button>
+    </div>
+    <div class="wrap-list" id="wrapList"></div>
+</div>
+<script>
+    var arr = [1,2,3,4,5];
+    var nextNum = 6;
+    var addBtn = document.getElementById('add');
+    var wrapList = document.getElementById('wrapList');
+    draw();
+    addBtn.onclick = function () {
+        add()
+    };
+    function add () {
+        var itemList = document.getElementsByClassName('item');
+        var random = randomIndex();
+        var next = nextNum++;
+        var item = document.createElement('div');
+        var txt = document.createTextNode(next);
+        // console.log(random, next, itemList[random]);
+        item.appendChild(txt);
+        item.className = 'item';
+        wrapList.insertBefore(item,itemList[random]);
+        arr.splice(random, 0, nextNum);
+        // return false;
+        // 重新换区item列表，此时已经更新
+        itemList = document.getElementsByClassName('item');
+        var newNode = itemList[random];
+        // 真实位置的信息都为默认值，这里无需添加
+        // 将元素放在虚拟位置 使元素看起来好像在起始点
+        newNode.style.opacity = 0;
+        newNode.style.transform = `translateY(${30}px)`;
+        setTimeout(function () {
+            newNode.classList.add('animate-on-transforms');
+            newNode.style.transform = '';
+            newNode.style.opacity = 1;
+        }, 200);
+        newNode.addEventListener('transitionend', () => {
+            newNode.classList.remove('animate-on-transforms');
+        })
+    }
+    function randomIndex() {
+        return Math.floor(Math.random() * arr.length)
+    }
+    function draw() {
+        let str = '';
+        for (let i = 0; i < arr.length; i++) {
+            str += `<div class="item">${arr[i]}</div>`
+        }
+        wrapList.innerHTML = str
+    }
+
+
+</script>
+</body>
+</html>

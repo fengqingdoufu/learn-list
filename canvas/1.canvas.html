@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    var canvas = document.getElementById('c1')
+    var can = canvas.getContext('2d')
+    // 1.填充颜色
+    can.fillStyle = 'blue'
+    // 2.边框颜色
+    can.strokeStyle = 'red'
+    // 3.变宽宽度
+    can.lineWidth = 1
+    // 4. 圆角 斜角  round bevel
+    can.lineJoin = 'round'
+    // 5.端点样式 round square
+    can.lineCap = 'round'
+    //绘图路劲  beginPath closePath  moveTo lineTo
+    can.beginPath()
+    can.moveTo(100,100)
+    can.lineTo(200,200)
+    can.lineTo(300,200)
+    can.closePath()
+    can.stroke()  // 画线
+
+    can.save()
+    can.fillStyle = 'red'
+    can.beginPath()
+    can.moveTo(100,200)
+    can.lineTo(100,300)
+    can.lineTo(200,300)
+    can.closePath()
+    can.fill()   // 填充
+    can.restore()
+
+    can.beginPath()
+    can.rect(100,100,100,100) //绘制方块
+    can.fill()  //
+
+    // // 清楚画布
+    // can.clearRect(0,0,canvas.width,canvas.height)
+
+    //绘制方块
+    can.fillRect(20,20,30,30) // L T W H  left top width height
+    //绘制带边框的方块
+    can.strokeRect(50.5,50.5,100,100)
+
+
+</script>
+</body>
+</html>

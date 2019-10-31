@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            position: relative;
+            list-style: none;
+            width: 300px;
+            height: 30px;
+            background: red;
+            /*border: 1px solid black;*/
+            overflow: hidden;
+        }
+        .item:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height:0;
+            line-height: 0;
+            border-width: 10px  10px 0 10px;
+            border-style:  dashed solid dashed dashed ;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-top-color: white;
+            left: -10px;
+        }
+        .base{
+            width: 300px;height: 300px;
+        }
+        .chamfer{
+            width: 100px;height: 100px;
+            background: #009EEB;
+            border: 1px solid red;
+            clip-path: polygon( 20px 0, calc(100% - 20px) 0, 100% 20px,
+            100% calc(100% - 20px), calc(100% - 20px) 100%,
+            20px 100%,
+            0 calc(100% - 20px),
+            0 20px
+            );
+        }
+    </style>
+
+</head>
+<body>
+<ul>
+    <li class="item"></li>
+    <li class="item"></li>
+</ul>
+<div class="chamfer"></div>
+
+</body>
+</html>

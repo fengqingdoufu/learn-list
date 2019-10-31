@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jQuery.1.0.1.js"></script>
+<script>
+    // console.log($())
+    // 给任意对象扩展
+    var obj = $.extend(true,{}, {name: 'max', list: {age: 30}}, {list: {name: 'new'}})
+    console.log(obj)
+    // // jQ 本身扩展 this = jq
+    // $.extend({
+    //     work: function () {
+    //
+    //     }
+    // })
+    // jQuery.work()
+    // // jq实例多想扩展 this = 实例对象
+    // $.fn.extend({sex: '男'})
+    // $().sex;
+</script>
+</body>
+</html>

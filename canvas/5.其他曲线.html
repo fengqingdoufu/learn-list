@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    can.moveTo(100,200)
+    can.arcTo(100,100,200,100,50)  //两组坐标 加半径
+    can.stroke()
+
+    //贝塞尔曲线
+    can.moveTo(100,200)
+    can.quadraticCurveTo(100,100,200,100)  //控制点  结束点
+    can.stroke()
+
+    //双点贝塞尔曲线
+    can.moveTo(100,200)
+    can.bezierCurveTo(100,100,200,200,200,100) //两组控制点  加一组结束点
+    can.stroke()
+</script>
+</body>
+</html>

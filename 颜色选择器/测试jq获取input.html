@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table id="table">
+    <tr>
+        <td style="width: 10%">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</td>
+        <td style="width: 200px"><input type="text" value="哈哈哈"></td>
+        <td style="width: 200px"><input type="text" value="哈哈哈"></td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" checked value="哈哈哈"></td>
+    </tr>
+    <tr>
+        <td><select name="" id="">
+            <option value="111">11</option>
+            <option value="22">22</option>
+        </select></td>
+    </tr>
+</table>
+<script src="../jquery.js"></script>
+<script>
+    // $(function(){
+    //     var  table = $('table');
+    //     $(table.find('tr')).each(function () {
+    //         // console.log($(this).eq(0).children().has('input'))
+    //         let input = $(this).eq(0).children().children();
+    //         let obj = {}
+    //         if (input.attr("type") === 'checkbox') {
+    //             console.log(input.attr('checked'))
+    //              obj = {
+    //                 isCheck: input.attr('checked') ? 1 : 0
+    //             }
+    //         }
+    //     })
+    // })
+    // console.log(new Date('2019-07-11 18:00:00').getTime())
+
+    function* gen(){
+        yield new Promise((resolve) => {
+           setTimeout(() => {
+               resolve(200)
+           }, 2000)
+        });
+        return 3;
+    }
+    var g = gen();
+    console.log('主流程1');
+    var step1 = g.next();
+    step1.value.then(res => {
+        console.log('主流程2');
+        console.log(res)
+    })
+    console.log('主流程3');
+
+    // function pro() {
+    //  return new Promise(resolve => {
+    //         setTimeout(() => {
+    //             resolve(200)
+    //         }, 2000)
+    //     })
+    // }
+    // async function p1() {
+    //     console.log(1)
+    //     let data = await pro();
+    //     console.log(data)
+    //     // var step1 = g.next();
+    //     // step1.value.then(res => {
+    //     //     console.log(res)
+    //     // })
+    //     console.log(2)
+    // }
+    // p1()
+    // console.log(g.next());
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    let obj = can.createLinearGradient(150,100,150,200) // 起点坐标和重点坐标
+    obj.addColorStop(0,'red')
+    obj.addColorStop(0.5,'yellow')
+    obj.addColorStop(1,'blue')
+    can.fillStyle = obj
+    can.fillRect(150,100,100,100)
+
+    //放射性渐边
+    // let obj = can.createRadialGradient(200,200,100,200,200,150) // 2个圆形加半径
+</script>
+</body>
+</html>

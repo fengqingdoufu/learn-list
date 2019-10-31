@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    can.fillRect(0,0,100,100)
+    //获取像素区域
+    let iImg = can.getImageData(0,0,100,100)  // 属性 width height data
+    for(let i=0;i<iImg.width*iImg.height;i++) {
+        iImg.data[4*i] = 255
+        iImg.data[4*i+1] = 0
+        iImg.data[4*i+2] = 0
+        iImg.data[4*i+3] = 100
+    }
+    //填充像素
+    can.putImageData(iImg,100,100)
+
+    //创建新的像素区域
+    let oImg = can.createImageData(100,100)
+    for(let i=0;i<oImg.width*iImg.height;i++) {
+        oImg.data[4*i] = 255
+        oImg.data[4*i+1] = 0
+        oImg.data[4*i+2] = 0
+        oImg.data[4*i+3] = 100
+    }
+    can.putImageData(oImg,200,100)
+
+</script>
+</body>
+</html>

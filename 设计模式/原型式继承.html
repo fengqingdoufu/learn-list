@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 原型式继承
+    function inheritObject(o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    }
+    var book = {}
+    var newBook = inheritObject(book);
+
+
+    // 寄生式继承
+    function createBook(obj) {
+        var o = new inheritObject(obj);
+        o.getName = function () {}
+        return o
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            width: 1000px;
+            max-height: 100px;
+            border: 1px solid red;
+            margin: 50px auto;
+            overflow: fragments;
+        }
+        .clearfix {zoom: 1}
+        .clearfix:after {
+            content: '..';
+            clear: both;
+            display: block;
+        }
+        p {
+            width: 25%;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .box {}
+        .box .left{
+             float: left;
+             background: red;
+             width: 100px;
+             height: 100px;
+         }
+        .box .right{
+            float: left;
+            background: blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap clearfix">
+    <p>看看看看看看看看</p>
+    <p>看看看看看看看看</p>
+    <p>看看看看看看看看</p>
+    <p>看看看看看看看看</p>
+    <p>看看看看看看看看</p>
+    <p>看看看看看看看看</p>
+</div>
+<div class="box clearfix">
+    <div class="left"></div>
+    <div class="right"></div>
+    <input type="button" value="点击" onClick="click1()">
+</div>
+<script>
+</script>
+</body>
+</html>

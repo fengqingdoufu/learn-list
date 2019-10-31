@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    can.font = '30px impact'
+    can.textBaseline = 'top'
+    //阴影
+    can.shadowOffsetX = 10
+    can.shadowOffsetY = 10
+    can.shadowBlur = 3
+    can.shadowColor = 'yellow'
+
+    //普通文字填充
+    // can.fillText('文字',0,0)
+    // can.strokeText('文本',0,200)
+
+    //文字居中
+    let w = can.measureText('文本').width
+    can.fillText('文本',(canvas.width-w)/2,(canvas.height-60)/2)
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas" width="120" height="30"></canvas>
+<script>
+    var canvas = document.querySelector('#canvas')
+    var ctx = canvas.getContext('2d')
+    canvas.onclick = function () {
+        draw()
+    }
+    draw()
+
+    function draw() {
+        ctx.fillStyle = randomColor(170, 250)
+        ctx.fillRect(0, 0, 120, 30)
+        var data = 'QWERTYUIOPASDFGHJKLZXCVBNM0123456789qwertyuiopasdfghjklzxcvbnm'
+        for (var i = 0; i <= 90; i += 30) {
+            var c = data[ranNum(0, data.length - 1)]
+            ctx.fillStyle = randomColor(60, 160)
+            ctx.font = ranNum(15, 32) + 'px Arial'
+            ctx.fillText(c, i + ranNum(0, 15), ranNum(20, 30))
+        }
+        for (var j = 0; j < 10; j++) {
+            ctx.beginPath()
+            ctx.moveTo(ranNum(0, 120), ranNum(0, 120))
+            ctx.lineTo(ranNum(0, 120), ranNum(0, 120))
+            ctx.strokeStyle = randomColor(60, 160)
+            ctx.stroke()
+        }
+        for (var k = 0; k < 10; k++) {
+            ctx.beginPath()
+            ctx.arc(ranNum(0, 120), ranNum(0, 30), ranNum(1, 5), 0, 2 * Math.PI)
+            ctx.strokeStyle = randomColor(60, 160)
+            ctx.stroke()
+        }
+    }
+
+    function ranNum(min, max) {
+        var num = Math.floor(Math.random() * (max - min) + min)
+        return num
+    }
+
+    function randomColor(min, max) {
+        var r = Math.floor(Math.random() * (max - min) + min)
+        var g = Math.floor(Math.random() * (max - min) + min)
+        var b = Math.floor(Math.random() * (max - min) + min)
+        return `rgb(${r},${g}, ${b})`
+        // return 'rgb('+r+','+g+','+b+')'
+    }
+
+</script>
+</body>
+</html>

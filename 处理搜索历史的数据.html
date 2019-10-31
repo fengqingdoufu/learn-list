@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    const SEARCH_KEY = '__search__'
+    const SEARCH_MAX_LEN = 4
+    sessionStorage[SEARCH_KEY] = ''
+    function stringToArray(arr){
+        var arr1 = []
+        if(!arr){
+            return  arr1
+        } else {
+            return  arr.split(',')
+        }
+
+    }
+    function insertArray(arr, val, maxLen) {
+        let newArr = stringToArray(arr).slice()
+        const index = newArr.indexOf(val)
+        if (index === 0) {
+            return
+        }
+        if (index > 0) {
+            newArr.splice(index, 1)
+        }
+        newArr.unshift(val)
+        if (maxLen && newArr.length > maxLen) {
+            newArr.pop()
+        }
+        return newArr
+    }
+    function saveSearch(query) {
+        let searches = sessionStorage.getItem(SEARCH_KEY)
+        let searches1 = insertArray(searches, query, SEARCH_MAX_LEN)
+        sessionStorage.setItem(SEARCH_KEY, searches1)
+        return searches1
+    }
+   console.log(saveSearch('飞车'))
+   console.log(saveSearch('飞车1'))
+   console.log(saveSearch('飞车2'))
+   console.log(saveSearch('飞车3'))
+   console.log(saveSearch('飞车2'))
+   //  console.log(saveSearch('飞车'))
+    // saveSearch('飞车4')
+    // saveSearch('飞车1')
+</script>
+</body>
+</html>

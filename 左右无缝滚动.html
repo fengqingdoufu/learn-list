@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <meta name="keywords" content="站长,网页特效,js特效,广告代码,zzjs,zzjs.net,sky,www.zzjs.net,站长特效 网" />
+    <meta name="description" content="www.zzjs.net,站长特效网，站长必备js特效及广告代码。大量高质量js特效，提供高质量广告代码下载,尽在站长特效网" />
+    <title>左右无间断滚动效果，sky整理收集。</title>
+    <style type="text/css" media="all">
+        .d1 {
+            margin:10px auto;
+            width:200px;
+            border:#103E63 1px solid;
+            background-color:#EFEFEF;
+            height:auto;
+            overflow:hidden;
+            white-space:nowrap;
+        }
+        .d2 {
+            margin:0px auto;
+            background-color:#FF9933;
+        }
+        .div2 {
+            width:auto;
+            height:auto;
+            font-size:12px;
+            float:left;
+            overflow:hidden;
+        }
+        ul{
+            margin:0px;
+            padding:9px;
+            list-style:none;
+            line-height:19px;
+            font-size:12px;
+        }
+        a:link,a:visited{
+            color:#3F78CF;
+            text-decoration:none;
+        }
+        a:hover{
+            color:#FF00CC;
+            text-decoration:underline;
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+        var s,s2,s3,s4,timer;
+        function init(){
+            s=getid("div1");
+            s2=getid("div2");
+            s3=getid("div3");
+            s4=getid("scroll");
+            s4.style.width=(s2.offsetWidth*2+100)+"px";
+            s3.innerHTML=s2.innerHTML;
+            timer=setInterval(mar,30)
+        }//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+        function mar(){
+            if(s2.offsetWidth<=s.scrollLeft){
+                s.scrollLeft-=s2.offsetWidth;
+            }else{s.scrollLeft++;}
+        }
+        function getid(id){
+            return document.getElementById(id);
+        }//欢迎来到站长特效网，我们的网址是www.zzjs.net，很好记，zz站长，js就是js特效，本站收集大量高质量js代码，还有许多广告代码下载。
+        window.onload=init;
+    </script>
+</head>
+<body>
+<a href="<#ZC_BLOG_HOST#>">站长特效网</a>,站长必备的高质量网页特效和广告代码。zzjs.net，站长js特效。<hr>
+<!--欢迎来到站长特效网，我们网站收集大量高质量js特效，提供许多广告代码下载，网址：www.zzjs.net，zzjs@msn.com,用.net打造靓站-->
+<div class="d1" id="div1" onmouseover="clearInterval(timer)" onmouseout="timer=setInterval(mar,30)">
+    <div class="scroll" id="scroll">
+        <div class="div2" id="div2">
+            <ul>
+                <li><a href="<#ZC_BLOG_HOST#>?cat=2" target="_self">考察合川网络信息建设情况</a></li>
+                <li><a href="<#ZC_BLOG_HOST#>?cat=1" target="_self">政协委员视察大石镇农业特色产业</a></li>
+                <li><a href="<#ZC_BLOG_HOST#>?cat=3" target="_self">对接好融资渠道 加快推进项目建设</a></li>
+                <li><a href="<#ZC_BLOG_HOST#>?cat=11" target="_self">重庆市油菜高产创建现场培训会在合召开</a></li>
+                <li><a href="<#ZC_BLOG_HOST#>?cat=6" target="_self">合川区人大常委会举行纪念改革开放30周年…</a></li>
+            </ul>
+        </div>
+        <div id="div3" class="div2"></div>
+    </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

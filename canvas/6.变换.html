@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    let num = 0
+    let num2 = 0
+    let value = 1
+
+
+    setInterval(function () {
+        num++
+        can.save()
+        can.clearRect(0,0,canvas.width,canvas.height)
+        can.translate(100,100) //移动
+        can.rotate(num*Math.PI/180) //旋转
+        if (num2 == 100) {
+            value = -1
+        }else if (num2==0)
+        {
+            value = 1
+        }
+        num2 += value
+        can.scale(num2*1/50,num2*1/50)
+        can.translate(-50,-50) //移动
+        // can.scale(1.5,1.5) //缩放
+        can.fillRect(0,0,100,100)
+        can.restore()
+    },30)
+
+
+</script>
+</body>
+</html>

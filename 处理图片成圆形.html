@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #img {
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<img src="" alt="" id="img1">
+<img src="" alt="" id="img">
+<script>
+    // var src= "http://c.hiphotos.baidu.com/image/pic/item/0b7b02087bf40ad1e89e7f175a2c11dfa8eccec8.jpg";
+    var img1 = document.getElementById('img');
+    // var src = './icon-no-search.png';
+    var src = './bg1.jpg';
+    // console.log(img);
+    // img.src = circle_image_v2(src, 0);
+    var base64 = ''
+    var img = new Image();//创建新的图片对象
+    img.setAttribute("crossOrigin",'anonymous');
+    img.onload = function(){//图片加载完，再draw 和 toDataURL
+        // console.log(circle_image_v2(this, 0));
+
+        img1.src =  circle_image_v2(this, 0)
+    };
+    img.src = src;
+    function circle_image_v2(img, imgType) {
+        let type = imgType || 0;
+        let radius, diameter, canvas, ctx, natural;
+        if (type) {
+            if (img.naturalWidth > img.naturalHeight) {
+                radius = img.naturalHeight / 2;
+            } else {
+                radius = img.naturalWidth / 2;
+            }
+        } else {
+            if (img.width > img.height) {
+                radius = img.height / 2;
+            } else {
+                radius = img.width / 2;
+            }
+            if (img.naturalWidth > img.naturalHeight) {
+                natural = img.naturalHeight;
+            } else {
+                natural = img.naturalWidth;
+            }
+        }
+        diameter = radius * 2;
+        canvas = document.createElement('canvas');
+        if (!canvas.getContext) { // 判断浏览器是否支持canvas，如果不支持在此处做相应的提示
+            console.log('您的浏览器版本过低，暂不支持。');
+            return false;
+        }
+        canvas.width = diameter;
+        canvas.height = diameter;
+        ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, diameter, diameter);
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(radius, radius, radius, 0, Math.PI * 2, false);
+        ctx.clip();
+        if (type) {
+            if (img.naturalWidth > img.naturalHeight) {
+                ctx.drawImage(img, (img.naturalWidth - img.naturalHeight)/2, 0, diameter, diameter, 0, 0, diameter, diameter);
+            } else {
+                ctx.drawImage(img, 0, (img.naturalHeight - img.naturalWidth)/2, diameter, diameter, 0, 0, diameter, diameter);
+            }
+        } else {
+            if (img.width > img.height) {
+                ctx.drawImage(img,(img.width - img.height)/2, 0, natural, natural, 0, 0, diameter, diameter);
+
+            } else {
+                ctx.drawImage(img, 0, (img.height - img.width)/2, natural, natural, 0, 0, diameter, diameter);
+            }
+        }
+        ctx.restore();
+        return canvas.toDataURL('image/png', 1);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrap {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 100px;
+        }
+        #inner {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="inner"></div>
+</div>
+<script>
+      /*类式继承
+        将父级的实例对象复制给子级的原型对象prototype，缺点是如果父级有引用类型的属性，会被影响，
+        且子级实例化无法给父级传值(实例化父级时可以传值)
+        子.prototype = new 父()
+      */
+
+      /*
+      构造函数继承   SuperClass.call(this, name) 不涉及到prototype，只继承属性
+      *
+      * */
+
+      // 组合式继承(类式继承+构造函数继承) 缺点：父类构造构造函数调用了两次
+      // 原型式继承 创建一个洁净的过渡对象，将父类的原型对象赋值给过渡对象的原型对象，然后实例化过渡对象返回。constructor会指向父类构造函数。过渡函数没有属性，开销较小
+      // 寄生式继承
+      // 寄生组合式继承(寄生式+构造函数)
+    // function C(name) {
+    //   this.name = name
+    // }
+    // function S() {}
+    // S.prototype = new C();
+    // let SS = new S();
+    console.log('v1.2.1' < 'v1.2.2')
+    // let wrap = document.getElementById('wrap');
+    // let inner = document.getElementById('inner');
+    // wrap.onmouseleave = function () {
+    //     console.log(1)
+    // }
+    function inheritObject(o) {
+        function F() {}
+        F.prototype = o
+        // F的constructor指向o的拥有者
+        console.log(F.prototype)
+        return new F()
+    }
+    function inheritPrototype(subClass, superClass) {
+        let p = inheritObject(superClass.prototype) // 干净的superClass实例，只带了原型上的方法和属性
+        console.log('检验平时不是superClass的实例', p instanceof superClass)
+        console.log('实例化后的洁净实例对象', p)
+        p.constructor = subClass // 此时p为了作为subClass的原型对象，需要更改constructor的指向，p的_proto_指向superClass的原型
+        subClass.prototype = p
+        // 父级的原型赋值给了过渡函数，并且返回过渡函数的实例
+        // 并且将过渡函数的constructor指向子级构造函数
+        // 并且将自己赋值给子级构造函数
+        // 子级构造函数就拥有了自己的
+    }
+    function SuperClass(name) {
+        this.name = name
+        this.color = ['red', 'blue', 'green']
+    }
+    SuperClass.prototype.getName = function() {
+        console.log(this.name)
+    }
+    function SubClass(name, time) {
+        SuperClass.call(this, name)
+        this.time = time
+    }
+    // SubClass.prototype = SuperClass.prototype
+    inheritPrototype(SubClass, SuperClass)
+    SubClass.prototype.getTime = function  () {
+        console.log(this.time)
+    }
+    // 此时SubClass添加原型方法只能点语法的形式，不然会覆盖原有的原型对象
+    console.log(SuperClass.prototype)
+    let instance1 = new SubClass('js book', 2012)
+    let instance2 = new SubClass('css book', 2013)
+    instance1.color.push('111')
+    console.log('SubClass的实例是不是SuperClass的实例', instance1 instanceof SuperClass);
+    console.log(instance1.color)
+    console.log(instance2.color)
+    instance2.getName()
+    instance2.getTime()
+
+    // 寄生组合继承第二种方法
+      function Parent(val) {
+        this.val = val;
+      }
+      function Child(value) {
+        Parent.call(this, value)
+      }
+      Child.prototype = Object.create(Parent.prototype, {
+        constructor: {
+          value: Child,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      })
+</script>
+</body>
+</html>

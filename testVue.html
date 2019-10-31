@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.10/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    {{value}}
+    <input type="text" v-model="value">
+    <div @click="getData">点击</div>
+</div>
+<script>
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      value: '1111'
+    },
+    methods: {
+      getData: function () {
+        console.log(this.value)
+      }
+    },
+    mounted: function () {}
+  })
+
+
+  // newVue()做了什么？
+  // initProxy 作用域代理，拦截组件内访问其它组件的数据。
+  // initLifecycle(vm) 建立父子组件关系，在当前实例上添加一些属性和生命周期标识。如： $children、 $refs、 _isMounted等。
+  // initEvents 用来存放除 @hook:生命周期钩子名称="绑定的函数"事件的对象。如： $on、 $emit等。
+  // initRender 用于初始化 $slots、 $attrs、 $listeners
+  // callHook(vm, 'beforeCreate')
+  // initInjections 初始化 inject，一般用于更深层次的组件通信，相当于加强版子组件的 props。用于组件库开发较多。
+  // initState 是很多选项初始化的汇总，包括： props、methods、data、computed和watch 等。
+  // initProvide 初始化 provide。
+  // callHook(vm, 'created')
+  // if (vm.$options.el) vm.$mount(vm.$options.el) vm.$mount，挂载实例。
+</script>
+</body>
+</html>

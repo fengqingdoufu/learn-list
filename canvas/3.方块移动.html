@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    var canvas = document.getElementById('c1')
+    var can = canvas.getContext('2d')
+    var num = 0
+    can.fillRect(0,0,100,100)
+    setInterval(function () {
+        num++
+        can.clearRect(0,0,canvas.width,canvas.height)
+        can.fillRect(num,num,100,100)
+    },1000/60)
+</script>
+</body>
+</html>

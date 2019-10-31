@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    let canvas = document.getElementById('c1')
+    let can = canvas.getContext('2d')
+    //  弧度 = 角度*Math.PI/180
+    // can.moveTo(200,200)
+    // can.arc(200,200,150,0,-90*Math.PI/180,false)
+    // can.stroke()
+    function toDraw() {
+        let x = 200
+        let y = 200
+        let r = 150
+        can.clearRect(0,0,canvas.width,canvas.height)
+        let oDate = new Date()
+        let oH = oDate.getHours()
+        let oM = oDate.getMinutes()
+        let oS = oDate.getSeconds()
+        let oHV =  (-90 + oH * 30 + oM/2)  *  Math.PI/180
+        let oMV =  (-90 + oM * 6)  *  Math.PI/180
+        let oSV =  (-90 + oS * 6)  *  Math.PI/180
+        // can.moveTo(x, y)
+        // can.arc(x, y, r , 0, 6*Math.PI/180,false)
+        // can.stroke()
+        // 画出秒钟格数
+        can.beginPath()
+        for(let i = 0; i < 60; i++) {
+            can.moveTo(x, y)
+            can.arc(x, y, r , 6 * i * Math.PI / 180, 6 * (i + 1) * Math.PI / 180,false)
+            can.stroke()
+        }
+        can.closePath()
+        can.stroke()
+
+        // 覆盖圆圈线
+        can.beginPath()
+        can.fillStyle = 'white'
+        can.moveTo(x, y)
+        can.arc(x,y,r*19/20,0,360* Math.PI/180,false)
+        can.closePath()
+        can.fill()
+
+        // 画出时针格数
+        can.beginPath()
+        can.lineWidth = 3
+        for(let i = 0; i < 60; i++) {
+            can.moveTo(x, y)
+            can.arc(x, y, r , 30 * i * Math.PI / 180, 30 * (i + 1) * Math.PI / 180,false)
+            can.stroke()
+        }
+        can.closePath()
+        can.stroke()
+
+        // 覆盖圆圈线
+        can.beginPath()
+        can.fillStyle = '#000'
+        can.moveTo(x, y)
+        can.arc(x,y,r*18/20,0,360* Math.PI/180,false)
+        can.closePath()
+        can.fill()
+
+        // 秒针，时针，分针
+        can.beginPath()
+        can.lineWidth = 5
+        can.moveTo(x, y)
+        can.arc(x,y,r*10/20,oHV,oHV,false)
+        can.closePath()
+        can.stroke()
+
+        can.beginPath()
+        can.lineWidth = 3
+        can.moveTo(x, y)
+        can.arc(x,y,r*14/20,oMV,oMV,false)
+        can.closePath()
+        can.stroke()
+
+
+        can.beginPath()
+        can.lineWidth = 1
+        can.moveTo(x, y)
+        can.arc(x,y,r*18/20,oSV,oSV,false)
+        can.closePath()
+        can.stroke()
+    }
+    setInterval(function () {
+        toDraw()
+    },1000)
+
+</script>
+</body>
+</html>

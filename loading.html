@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    .box {
+        width: 100%;
+        padding: 3%;
+        box-sizing: border-box;
+        overflow: hidden
+    }
+
+    .box .loader {
+        width: 30%;
+        float: left;
+        height: 200px;
+        margin-right: 3%;
+        border: 1px #ccc solid;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    @-webkit-keyframes loading-1 {
+        0% {
+            transform: rotate(0deg)
+        }
+        50% {
+            transform: rotate(180deg)
+        }
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+
+    .loading-1 {
+        width: 35px;
+        height: 35px;
+        position: relative
+    }
+
+    .loading-1 i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(transparent 0, transparent 70%, #333 30%, #333 100%);
+        -webkit-animation: loading-1 .6s linear 0s infinite
+    }
+
+    @-webkit-keyframes loading-2 {
+        0% {
+            transform: scaleY(1)
+        }
+        50% {
+            transform: scaleY(.4)
+        }
+        100% {
+            transform: scaleY(1)
+        }
+    }
+
+    .loading-2 i {
+        display: inline-block;
+        width: 4px;
+        height: 35px;
+        border-radius: 2px;
+        margin: 0 2px;
+        background-color: #333
+    }
+
+    .loading-2 i:nth-child(1) {
+        -webkit-animation: loading-2 1s ease-in .1s infinite
+    }
+
+    .loading-2 i:nth-child(2) {
+        -webkit-animation: loading-2 1s ease-in .2s infinite
+    }
+
+    .loading-2 i:nth-child(3) {
+        -webkit-animation: loading-2 1s ease-in .3s infinite
+    }
+
+    .loading-2 i:nth-child(4) {
+        -webkit-animation: loading-2 1s ease-in .4s infinite
+    }
+
+    .loading-2 i:nth-child(5) {
+        -webkit-animation: loading-2 1s ease-in .5s infinite
+    }
+
+    @-webkit-keyframes loading-3 {
+        50% {
+            transform: scale(.4);
+            opacity: .3
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1
+        }
+    }
+
+    .loading-3 {
+        position: relative
+    }
+
+    .loading-3 i {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #333;
+        position: absolute
+    }
+
+    .loading-3 i:nth-child(1) {
+        top: 25px;
+        left: 0;
+        -webkit-animation: loading-3 1s ease 0s infinite
+    }
+
+    .loading-3 i:nth-child(2) {
+        top: 17px;
+        left: 17px;
+        -webkit-animation: loading-3 1s ease -.12s infinite
+    }
+
+    .loading-3 i:nth-child(3) {
+        top: 0;
+        left: 25px;
+        -webkit-animation: loading-3 1s ease -.24s infinite
+    }
+
+    .loading-3 i:nth-child(4) {
+        top: -17px;
+        left: 17px;
+        -webkit-animation: loading-3 1s ease -.36s infinite
+    }
+
+    .loading-3 i:nth-child(5) {
+        top: -25px;
+        left: 0;
+        -webkit-animation: loading-3 1s ease -.48s infinite
+    }
+
+    .loading-3 i:nth-child(6) {
+        top: -17px;
+        left: -17px;
+        -webkit-animation: loading-3 1s ease -.6s infinite
+    }
+
+    .loading-3 i:nth-child(7) {
+        top: 0;
+        left: -25px;
+        -webkit-animation: loading-3 1s ease -.72s infinite
+    }
+
+    .loading-3 i:nth-child(8) {
+        top: 17px;
+        left: -17px;
+        -webkit-animation: loading-3 1s ease -.84s infinite
+    }
+
+</style>
+<style>
+    .lds-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        line-height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        top: 0;
+        left: 0;
+        background: rgba(51,51,51,0.8);
+    }
+    .lds-ellipsis {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -32px;
+        margin-top: -32px;
+        width: 64px;
+        height: 64px;
+    }
+    .lds-ellipsis div {
+        position: absolute;
+        top: 27px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background-color: rgb(252,25,126);
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+    .lds-ellipsis div:nth-child(1) {
+        left: 6px;
+        animation: lds-ellipsis1 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(2) {
+        left: 6px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(3) {
+        left: 26px;
+        animation: lds-ellipsis2 0.6s infinite;
+    }
+    .lds-ellipsis div:nth-child(4) {
+        left: 45px;
+        animation: lds-ellipsis3 0.6s infinite;
+    }
+    @keyframes lds-ellipsis1 {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    @keyframes lds-ellipsis3 {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
+    }
+    @keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(19px, 0);
+        }
+    }
+</style>
+<body>
+<div class="box">
+    <div class="loader">
+        <div class="loading-1">
+            <i></i>
+        </div>
+    </div>
+
+    <div class="loader">
+        <div class="loading-2">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+
+    <div class="loader">
+        <div class="loading-3">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+    </div>
+</div>
+<div class="lds-container" id="loading-page">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
+<script>
+    var str = '111'
+    var srt1 = '王佳#'
+    console.log(str.length)
+    console.log(srt1.length)
+    console.log(window.location.search)
+    console.log(window.location.href.indexOf('#'))
+    srt1='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb809682f1e7d6014&redirect_uri=http%3A%2F%2Fapi.erp.yiautos.com%2Fzuul%2Fwechat%2Fwx%2Fauth2&response_type=code&scope=snsapi_userinfo&state=http%3A%2F%2Flocalhost%3A9000%2F%23%2Findex%3FactivityId%3Ddhkjss&connect_redirect=1#wechat_redirect'
+    console.log(decodeURIComponent(srt1))
+    var t = window.localStorage.a || window.localStorage.b || ''
+    console.log(typeof t)
+
+    var nickName = '哈哈哈你的超过了是个字啊'
+    nickName = nickName.length > 8 ? nickName.substring(0, 7) : nickName
+        console.log(nickName)
+</script>
+</body>
+</html>

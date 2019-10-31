@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div :title="a">我是{{a}}，你是{{b}},</div>
+    <div @click="fn">{{a+b}}</div>
+</div>
+<script>
+    let vm = new Tvue({
+        el: '#app',
+        data: {a: 11,b: 222},
+        methods: {
+            fn() {
+                // console.log(this.a)
+                this.a++
+            }
+        }
+    })
+    // function Person() {
+    //     this.age = 0;
+    //     setInterval(() => {
+    //         // 回调里面的 `this` 变量就指向了期望的那个对象了
+    //         console.log(this)
+    //         this.age++;
+    //     }, 3000);
+    // }
+    //
+    // var p = new Person()
+    let obj = {
+        a: 1,
+        fn: function (b) {
+            let f = v => v + this.a
+            return f(b)
+        },
+        fn1: () => {
+            return this
+        },
+        fn2: function () {
+            return this
+        }
+    }
+    console.log(obj.fn(1))
+    console.log(obj.fn1())
+    console.log(obj.fn2())
+</script>
+</body>
+</html>

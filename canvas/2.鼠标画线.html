@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background: #000;
+        }
+        #c1 {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<canvas id="c1" width="400" height="400">1</canvas>
+<script>
+    var canvas = document.getElementById('c1')
+    var can = canvas.getContext('2d')
+    canvas.onmousedown = function (e) {
+        var ev = e || window.event
+        can.moveTo(ev.clientX - canvas.offsetLeft, ev.clientY - canvas.offsetTop)
+        document.onmousemove = function (e) {
+            var ev = e || window.event
+            can.lineTo(ev.clientX - canvas.offsetLeft, ev.clientY - canvas.offsetTop)
+            can.stroke()
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null
+            document.onmouseup = null
+        }
+    }
+
+</script>
+</body>
+</html>

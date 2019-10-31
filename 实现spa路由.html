@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/page1">page1</a>
+<a href="/page2">page2</a>
+<a href="/page1">page3</a>
+<div id="container">我是主页</div>
+<script>
+    console.log(decodeURIComponent('https%3A%2F%2Fsnack.expo.io%2F%40sophister%2Fcustom-pull-to-refresh-header'))
+    // class Router {
+    //   constructor() {
+    //     this.routers = {}
+    //     this.listenPopState()
+    //     this.listenLink()
+    //   }
+    //   listenPopState() {
+    //     window.addEventListener('popstate', e => {
+    //       console.log(111)
+    //       let state = e.state || {}
+    //       let path = state.path || ''
+    //       this.handler(path)
+    //     })
+    //   }
+    //   listenLink() {
+    //     window.addEventListener('click', e => {
+    //       let ev = e.target
+    //       if (ev.tagName === 'A' && ev.getAttribute('href')) {
+    //         console.log(111)
+    //         ev.preventDefault();
+    //         // this.urlRefresh(ev.getAttribute('href'))
+    //       }
+    //     })
+    //   }
+    //   register(path, cb) {
+    //     this.routers[path] = cb
+    //   }
+    //   urlRefresh(path) {
+    //     history.pushState({path}, null, path)
+    //   }
+    //   handler(path) {
+    //    this.routers[path].call(this)
+    //   }
+    //   index(cb) {
+    //     this.routers['/'] = cb
+    //   }
+    // }
+    // let container = document.getElementById('container')
+    // let router = new Router()
+    // router.register('/page1', () => {
+    //   container.innerHTML = '我是page1'
+    // })
+    // router.register('/page2', () => {
+    //   container.innerHTML = '我是page2'
+    // })
+    // router.register('/page3', () => {
+    //   container.innerHTML = '我是page3'
+    // })
+        window.addEventListener('popstate', e => {
+          console.log(111)
+          let state = e.state || {}
+          let path = state.path || ''
+          this.handler(path)
+        })
+    // window.history.pushState({user: 'f'}, null, 'fff')
+
+    var originString = '4102070710002K8A00269,4102062270003K8A00252,4102070710002K8A00269'
+    var newString = ''
+    let strArr = originString.split(',')
+    for(var i = 0; i < strArr.length; i++) {
+      strArr[i] =  "'" + strArr[i] +"'"
+    }
+    newString =  '(' + strArr.join(',') + ')'
+</script>
+</body>
+</html>
