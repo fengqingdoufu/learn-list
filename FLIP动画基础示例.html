@@ -40,6 +40,33 @@
     app.addEventListener('transitionend', () => {
         app.classList.remove('animate-on-transforms');
     })
+
+    // 宏任何 微任务
+    console.log('宏任何 微任务 script start')  // 1
+    setTimeout(() => {
+        console.log('settimeout') // 宏1
+    },0)
+    Promise.resolve().then(() => {
+        console.log('promise1') // 微1
+    }).then(() => {
+        console.log('promise2') // 微3
+    })
+
+    Promise.resolve().then(() => {
+        console.log('promise4') // 微2
+    }).then(() => {
+        console.log('promise5') // 微4
+    })
+
+    new Promise((resolve) => {
+        console.log('new promise') // 2
+        setTimeout(() => { // 宏2
+            resolve()
+        },0)
+    }).then(() => {
+        console.log('new promise end')
+    })
+    console.log('script end') // 3
 </script>
 </body>
 </html>

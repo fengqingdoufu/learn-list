@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <style>
+        .s-1{
+            width: 244px;
+            height: 146px;
+            position: relative;
+            animation: swing4-1 2s ease-in-out infinite;
+            transform: rotate(-2deg);
+            transform-origin: top center;
+        }
+        .item-1{
+            width: 46px;
+            height: 146px;
+            background: url(./asset/top.jpg) no-repeat top center;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .s-2{
+            width: 244px;
+            height: 351px;
+            background: url(./asset/center.jpg) no-repeat top center;
+            position: absolute;
+            top: 105px;
+            z-index: 1;
+            animation: swing4-2 4s ease-in-out infinite;
+            transform: rotate3d(0, 1, 0, 20deg);
+            transform-origin: top center;
+        }
+        .s-3{
+            width: 244px;
+            height: 120px;
+            background: url(./asset/bottom.jpg) no-repeat top center;
+            position: absolute;
+            top: 325px;
+            z-index: 2;
+            animation: swing4-3 4s ease-in-out infinite;
+            transform: rotate(3deg);
+            transform-origin: top center;
+        }
+        @keyframes swing4-1 {
+            0% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg);}
+            100% { transform: rotate(-2deg);}
+        }
+        @keyframes swing4-2 {
+            0% { transform: rotate3d(0, 1, 0, 20deg); }
+            50% { transform: rotate3d(0, 1, 0, -20deg);}
+            100% { transform: rotate3d(0, 1, 0, 20deg);}
+        }
+        @keyframes swing4-3 {
+            0% { transform: rotate(3deg); }
+            50% { transform: rotate(-3deg);}
+            100% { transform: rotate(3deg);}
+        }
+    </style>
+</head>
+<body>
+<div class="animate-3">
+    <!--运动模块1-->
+    <div class="s-1">
+        <div class="item-1"></div>
+        <!--运动模块2-->
+        <div class="s-2">
+            <!--运动模块3-->
+            <div class="s-3"></div>
+        </div>
+    </div>
+</div>
+
+<input type="text" id="input">
+<script>
+    $('#input').on('input',function () {
+        console.log(11)
+    })
+</script>
+</body>
+</html>

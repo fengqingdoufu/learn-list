@@ -125,7 +125,6 @@
     delete context[caller]
     return res
   }
-
   // 10.暂停函数自执行器
   function run(gen) {
     let it = gen()
@@ -218,11 +217,11 @@
   console.log(ser.replace(new RegExp(brand, 'g'), '').trim())
 
     // 禁止右键、选择、复制
-    ['contextmenu', 'selectstart', 'copy'].forEach(function (ev) {
-    document.addEventListener(ev, function (event) {
-      return event.returnValue = false
-    })
-  });
+  //   ['contextmenu', 'selectstart', 'copy'].forEach(function (ev) {
+  //   document.addEventListener(ev, function (event) {
+  //     return event.returnValue = false
+  //   })
+  // });
 
   // performance.timing：利用performance.timing进行性能分析
   window.onload = function () {

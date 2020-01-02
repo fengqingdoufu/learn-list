@@ -6,6 +6,16 @@
 </head>
 <body>
 <script>
+    async function async1() {
+        let res =  await new Promise(resolve => {
+            console.log(2);
+            setTimeout(() => {
+                resolve();
+                console.log('async1 start');
+            },0)
+        });
+        console.log('async1 end')
+    }
     async function async2() {
         let res =  await new Promise(resolve => {
             console.log(1);
@@ -16,6 +26,7 @@
         });
         console.log('async2 end')
     }
+    async1()
     async2()
 
     // function pro() {
